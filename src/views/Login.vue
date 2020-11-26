@@ -43,6 +43,7 @@
 
 <script>
 import { email, required, minLength } from "@vuelidate/validators";
+import messages from "@/utils/messages";
 
 export default {
 	data: () => ({
@@ -66,10 +67,13 @@ export default {
 				password: this.password,
 			};
 
-			console.log(formData);
-
 			this.$router.push("./");
 		},
+	},
+	mounted() {
+		if (messages[this.$route.query.message]) {
+			this.$message(messages[this.$route.query.message]);
+		}
 	},
 };
 </script>
